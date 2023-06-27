@@ -12,3 +12,6 @@ function App(){
 }
 
 export default App;
+
+// to remove babel warning on npm start, run this command:
+// npm install --save-dev @babel/plugin-proposal-private-property-in-object 
