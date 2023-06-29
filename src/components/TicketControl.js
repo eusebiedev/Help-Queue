@@ -10,7 +10,8 @@ class TicketControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       // confirmSteps: false
-      mainTicketList: []
+      mainTicketList: [],
+      selectedTicket: null
     };
   }
 
