@@ -3,6 +3,7 @@ import NewTicketForm from './NewTicketForm';
 import TicketList from './TicketList';
 import TicketDetail from './TicketDetail';
 import EditTicketForm from './EditTicketForm';
+import { ThemeContext } from '../context/theme-context'; //import theme
 
 // import ConfirmSteps from './ConfirmSteps';
 
@@ -71,6 +72,13 @@ class TicketControl extends React.Component {
   }
 
   render(){
+    let theme = this.context; //access context value
+
+    const buttonStyles = { // create button styles
+      backgroundColor: theme.buttonBackground,
+      color: theme.textColor,
+    }
+    
     let currentlyVisibleState = null;
     let buttonText = null; 
 
@@ -93,51 +101,16 @@ class TicketControl extends React.Component {
       currentlyVisibleState = <TicketList ticketList={this.state.mainTicketList} onTicketSelection={this.handleChangingSelectedTicket} />;
       buttonText = "Add Ticket"; 
     }
-    
+    //add button styles attribute
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button> 
+        <button style={buttonStyles} onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }
-
-    // handleClick = () => {
-  //   if (this.state.confirmSteps === false) {
-  //     this.setState(prevState => ({
-  //     confirmSteps: !prevState.confirmSteps 
-  //     }));
-  //   } else if (this.state.formVisibleOnPage === false) {
-  //     this.setState(prevState => ({
-  //     formVisibleOnPage: !prevState.formVisibleOnPage
-  //     }));
-  //   } else { 
-  //     this.setState(prevState => ({
-  //     formVisibleOnPage: !prevState.formVisibleOnPage,
-  //     confirmSteps: !prevState.confirmSteps 
-  //     }));
-  //   }
-  // }
-  // render(){
-  //   let currentlyVisibleState = null;
-  //   let buttonText = null;
-  //   if (this.state.formVisibleOnPage) {
-  //     currentlyVisibleState = <NewTicketForm />
-  //     buttonText = "Return to Ticket List";
-  //   } else if (this.state.confirmSteps) {
-  //     currentlyVisibleState = <ConfirmSteps />
-  //     buttonText = "Yes";
-  //   } else 
-  //     currentlyVisibleState = <TicketList />
-  //     buttonText = "Add Ticket";
-    
-  //   return(
-  //     <React.Fragment>
-  //       {currentlyVisibleState}
-  //       <button onClick={this.handleClick}>{buttonText}</button>
-  //     </React.Fragment>
-  //   );
-  // }
 }
 
-export default TicketControl
+TicketControl.contextType = ThemeContext;
+
+export default TicketControl;

@@ -1,22 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../context/theme-context";
 import PropTypes from "prop-types";
 
 function ReusableForm(props) {
+
+  const theme = useContext(ThemeContext);
+  const buttonStyles = {
+    backgroundColor: theme.buttonBackground,
+    color: theme.textColor,  }
+
+  const inputStyles = {
+    backgroundColor: theme.inputBackground,
+    color: theme.textColor,  }
+    
   return (
     <React.Fragment>
       <form onSubmit={props.formSubmissionHandler}>
         <input
+        style={inputStyles}
           type='text'
           name='names'
-          placeholder='Pair Names' />
+          placeholder='Pair Names' /><br/><br/>
         <input
+        style={inputStyles}
           type='text'
           name='location'
-          placeholder='Location' />
+          placeholder='Location' /><br/><br/>
         <textarea
+        style={inputStyles}
           name='issue'
-          placeholder='Describe your issue.' />
-        <button type='submit'>{props.buttonText}</button>
+          placeholder='Describe your issue.' /><br/><br/>
+        <button style={buttonStyles} type='submit'>{props.buttonText}</button>
       </form>
     </React.Fragment>
   );
