@@ -24,6 +24,7 @@ function NewTicketForm(props) {
     </React.Fragment>
   );
 }
+
 NewTicketForm.propTypes = {
   onNewTicketCreation: PropTypes.func
 };
